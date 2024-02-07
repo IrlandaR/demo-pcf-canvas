@@ -13,6 +13,8 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
 
+# Instala las herramientas necesarias
+RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install lts/* 16 && nvm alias default 16" 2>&1
 RUN npm install --global @microsoft/powerplatform-cli
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends dotnet-sdk-3.1
